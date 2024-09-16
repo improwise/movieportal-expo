@@ -1,12 +1,12 @@
-// app/(tabs)/index.tsx
+// app/(tabs)/top-rated.tsx
 
 import React, { useState, useEffect } from "react";
 import { StyleSheet, View } from "react-native";
 import MovieList from "../../components/MovieList";
-import { getPopularMovies } from "../../services/tmdbApi";
+import { getTopRatedMovies } from "../../services/tmdbApi";
 import { Movie } from "../../types/movie";
 
-export default function PopularMoviesScreen() {
+export default function TopRatedMoviesScreen() {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [page, setPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
@@ -15,11 +15,11 @@ export default function PopularMoviesScreen() {
     if (isLoading) return;
     setIsLoading(true);
     try {
-      const newMovies = await getPopularMovies(page);
+      const newMovies = await getTopRatedMovies(page);
       setMovies((prevMovies) => [...prevMovies, ...newMovies]);
       setPage((prevPage) => prevPage + 1);
     } catch (error) {
-      console.error("Error fetching popular movies:", error);
+      console.error("Error fetching top-rated movies:", error);
     } finally {
       setIsLoading(false);
     }
