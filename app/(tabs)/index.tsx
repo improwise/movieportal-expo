@@ -1,7 +1,7 @@
 // app/(tabs)/index.tsx
 
 import React, { useState, useEffect } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, SafeAreaView } from "react-native";
 import MovieList from "../../components/MovieList";
 import { getPopularMovies } from "../../services/tmdbApi";
 import { Movie } from "../../types/movie";
@@ -30,13 +30,13 @@ export default function PopularMoviesScreen() {
   }, []);
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <MovieList
         movies={movies}
         onLoadMore={fetchMovies}
         isLoading={isLoading}
       />
-    </View>
+    </SafeAreaView>
   );
 }
 

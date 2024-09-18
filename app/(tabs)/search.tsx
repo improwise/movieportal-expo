@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { StyleSheet, View, TextInput } from 'react-native';
-import MovieList from '../../components/MovieList';
-import { searchMovies } from '../../services/tmdbApi';
-import { Movie } from '../../types/movie';
+import React, { useState } from "react";
+import { StyleSheet, View, TextInput, SafeAreaView } from "react-native";
+import MovieList from "../../components/MovieList";
+import { searchMovies } from "../../services/tmdbApi";
+import { Movie } from "../../types/movie";
 
 export default function SearchScreen() {
   const [movies, setMovies] = useState<Movie[]>([]);
@@ -39,7 +39,7 @@ export default function SearchScreen() {
   };
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <TextInput
         style={styles.input}
         value={query}
@@ -48,12 +48,8 @@ export default function SearchScreen() {
         placeholder="Search movies..."
         returnKeyType="search"
       />
-      <MovieList
-        movies={movies}
-        onLoadMore={handleLoadMore}
-        isLoading={isLoading}
-      />
-    </View>
+      <MovieList movies={movies} onLoadMore={handleLoadMore} isLoading={isLoading} />
+    </SafeAreaView>
   );
 }
 

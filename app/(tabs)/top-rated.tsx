@@ -1,7 +1,7 @@
 // app/(tabs)/top-rated.tsx
 
 import React, { useState, useEffect } from "react";
-import { StyleSheet, View } from "react-native";
+import { SafeAreaView, StyleSheet, View } from "react-native";
 import MovieList from "../../components/MovieList";
 import { getTopRatedMovies } from "../../services/tmdbApi";
 import { Movie } from "../../types/movie";
@@ -30,13 +30,9 @@ export default function TopRatedMoviesScreen() {
   }, []);
 
   return (
-    <View style={styles.container}>
-      <MovieList
-        movies={movies}
-        onLoadMore={fetchMovies}
-        isLoading={isLoading}
-      />
-    </View>
+    <SafeAreaView style={styles.container}>
+      <MovieList movies={movies} onLoadMore={fetchMovies} isLoading={isLoading} />
+    </SafeAreaView>
   );
 }
 

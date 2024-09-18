@@ -1,7 +1,13 @@
 // components/MovieList.tsx
 
 import React, { useEffect, useState } from "react";
-import { FlatList, ActivityIndicator, StyleSheet, View } from "react-native";
+import {
+  FlatList,
+  ActivityIndicator,
+  StyleSheet,
+  View,
+  useWindowDimensions,
+} from "react-native";
 import MovieCard from "./MovieCard";
 import { Movie, Genre } from "../types/movie";
 import { getGenres } from "../services/tmdbApi";
@@ -18,6 +24,7 @@ const MovieList: React.FC<MovieListProps> = ({
   isLoading,
 }) => {
   const [genres, setGenres] = useState<Genre[]>([]);
+  const { width } = useWindowDimensions();
 
   useEffect(() => {
     const fetchGenres = async () => {
@@ -26,10 +33,16 @@ const MovieList: React.FC<MovieListProps> = ({
         setGenres(genreList);
       } catch (error) {
         console.error("Error fetching genres:", error);
+        setGenres([]);
       }
     };
     fetchGenres();
   }, []);
+
+  const getNumColumns = () => {
+    const minCardWidth = 150; // Minimum width for a card
+    return Math.floor(width / minCardWidth);
+  };
 
   const renderFooter = () => {
     if (!isLoading) return null;
@@ -49,13 +62,15 @@ const MovieList: React.FC<MovieListProps> = ({
       onEndReachedThreshold={0.5}
       ListFooterComponent={renderFooter}
       contentContainerStyle={styles.list}
+      numColumns={getNumColumns()}
+      key={getNumColumns()} // Force re-render on orientation change
     />
   );
 };
 
 const styles = StyleSheet.create({
   list: {
-    padding: 16,
+    padding: 8,
   },
   loadingFooter: {
     paddingVertical: 20,
