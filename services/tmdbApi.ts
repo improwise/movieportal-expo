@@ -1,6 +1,9 @@
 import { Movie, MovieDetails, Genre } from "../types/movie";
 
 const BASE_URL = process.env.EXPO_PUBLIC_BASE_URL;
+if (!BASE_URL) {
+  throw new Error("Base URL is not set in .env file");
+}
 const TMDB_API_KEY = process.env.EXPO_PUBLIC_TMDB_API_KEY;
 if (!TMDB_API_KEY) {
   throw new Error("TMDB API key is not set in .env file");

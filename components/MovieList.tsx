@@ -18,11 +18,7 @@ interface MovieListProps {
   isLoading: boolean;
 }
 
-const MovieList: React.FC<MovieListProps> = ({
-  movies,
-  onLoadMore,
-  isLoading,
-}) => {
+function MovieList({ movies, onLoadMore, isLoading }: MovieListProps) {
   const [genres, setGenres] = useState<Genre[]>([]);
   const { width } = useWindowDimensions();
 
@@ -66,7 +62,7 @@ const MovieList: React.FC<MovieListProps> = ({
       key={getNumColumns()} // Force re-render on orientation change
     />
   );
-};
+}
 
 const styles = StyleSheet.create({
   list: {

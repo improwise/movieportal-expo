@@ -17,7 +17,7 @@ interface MovieCardProps {
   genres?: Genre[];
 }
 
-const MovieCard: React.FC<MovieCardProps> = ({ movie, genres = [] }) => {
+function MovieCard({ movie, genres = [] }: MovieCardProps) {
   const { width } = useWindowDimensions();
   const numColumns = Math.floor(width / 150); // 150 is minimum card width
   const cardWidth = width / numColumns - 16; // 16 is total horizontal margin
@@ -53,7 +53,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie, genres = [] }) => {
       </TouchableOpacity>
     </Link>
   );
-};
+}
 
 const styles = StyleSheet.create({
   card: {
