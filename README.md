@@ -2,6 +2,8 @@
 
 MoviePortal Expo is a React Native mobile application built with Expo that allows users to browse popular movies, search for movies, and view movie details. The app uses The Movie Database (TMDb) API to fetch movie information.
 
+Demo available at: https://movieportal-expo.improwise.com/
+
 ## Features
 
 - Browse popular movies
